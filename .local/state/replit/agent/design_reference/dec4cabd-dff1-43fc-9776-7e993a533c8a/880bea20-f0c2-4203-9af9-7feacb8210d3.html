@@ -1,0 +1,547 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerSync - Your Career & Education Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- @COMPONENT: AppHeader [navigation, user menu, search] -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-compass text-primary-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">CareerSync</span>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-primary-600 border-b-2 border-primary-600 px-1 pb-4 text-sm font-medium">Dashboard</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700 px-1 pb-4 text-sm font-medium">Opportunities</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700 px-1 pb-4 text-sm font-medium">Applications</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700 px-1 pb-4 text-sm font-medium">Profile</a>
+                </nav>
+
+                <!-- Right side -->
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400"></span>
+                    </button>
+                    <div class="flex items-center space-x-3">
+                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=32&h=32" alt="User avatar" data-mock="true">
+                        <span class="text-sm font-medium text-gray-700" data-bind="user.name">Alex Chen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: AppHeader -->
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- @COMPONENT: WelcomeSection [user greeting, quick stats] -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Welcome back, <span data-bind="user.firstName">Alex</span>!</h1>
+            <p class="text-gray-600">Track your applications and discover new opportunities</p>
+        </div>
+        <!-- @END_COMPONENT: WelcomeSection -->
+
+        <!-- @COMPONENT: UniversalSearch [search bar, filters] -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+            <div class="relative">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <input type="text" placeholder="Search jobs, scholarships, internships..." 
+                       class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-lg"
+                       data-mock="true">
+            </div>
+            <div class="flex flex-wrap gap-3 mt-4">
+                <select class="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500">
+                    <option>All Types</option>
+                    <option>Jobs</option>
+                    <option>Scholarships</option>
+                    <option>Internships</option>
+                </select>
+                <select class="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500">
+                    <option>All Locations</option>
+                    <option>Remote</option>
+                    <option>New York</option>
+                    <option>San Francisco</option>
+                </select>
+                <select class="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500">
+                    <option>All Fields</option>
+                    <option>Computer Science</option>
+                    <option>Engineering</option>
+                    <option>Business</option>
+                </select>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: UniversalSearch -->
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- @COMPONENT: QuickStats [application metrics, deadlines] -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-primary-50 rounded-lg">
+                                <i class="fas fa-paper-plane text-primary-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Applications</p>
+                                <p class="text-2xl font-bold text-gray-900" data-bind="stats.applications">24</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-green-50 rounded-lg">
+                                <i class="fas fa-calendar-check text-green-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Interviews</p>
+                                <p class="text-2xl font-bold text-gray-900" data-bind="stats.interviews">3</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-amber-50 rounded-lg">
+                                <i class="fas fa-clock text-amber-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Deadlines</p>
+                                <p class="text-2xl font-bold text-gray-900" data-bind="stats.deadlines">5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: QuickStats -->
+
+                <!-- @COMPONENT: RecentOpportunities [job and scholarship listings] -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-semibold text-gray-900">Recommended for You</h2>
+                            <button class="text-primary-600 hover:text-primary-700 text-sm font-medium">View All</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <!-- @MAP: opportunities.map(opportunity => ( -->
+                        <div class="space-y-4">
+                            <!-- Job Opportunity Card -->
+                            <div class="flex items-start justify-between p-4 border border-gray-200 rounded-lg hover:border-primary-300 hover:shadow-md transition-all cursor-pointer" data-mock="true">
+                                <div class="flex items-start space-x-4">
+                                    <!-- Company logo placeholder showing a tech startup office -->
+                                    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=64&h=64" 
+                                         alt="Company logo" class="w-12 h-12 rounded-lg object-cover">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Software Engineer Intern</h3>
+                                        <p class="text-gray-600 text-sm">TechCorp Inc.</p>
+                                        <div class="flex items-center space-x-4 mt-2 text-sm text-gray-500">
+                                            <span><i class="fas fa-map-marker-alt mr-1"></i>San Francisco, CA</span>
+                                            <span><i class="fas fa-briefcase mr-1"></i>Internship</span>
+                                            <span><i class="fas fa-dollar-sign mr-1"></i>$25/hr</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 mt-2">
+                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">React</span>
+                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Node.js</span>
+                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Remote</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span class="text-xs text-gray-500">Posted 2 days ago</span>
+                                    <button class="mt-2 px-4 py-2 bg-primary-600 text-white text-sm rounded-lg hover:bg-primary-700">
+                                        Apply Now
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Scholarship Opportunity Card -->
+                            <div class="flex items-start justify-between p-4 border border-gray-200 rounded-lg hover:border-primary-300 hover:shadow-md transition-all cursor-pointer" data-mock="true">
+                                <div class="flex items-start space-x-4">
+                                    <!-- University building representing academic institution -->
+                                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=64&h=64" 
+                                         alt="Institution logo" class="w-12 h-12 rounded-lg object-cover">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Merit Scholarship for CS Students</h3>
+                                        <p class="text-gray-600 text-sm">Stanford University</p>
+                                        <div class="flex items-center space-x-4 mt-2 text-sm text-gray-500">
+                                            <span><i class="fas fa-graduation-cap mr-1"></i>Undergraduate</span>
+                                            <span><i class="fas fa-money-bill-wave mr-1"></i>$15,000</span>
+                                            <span class="text-red-600"><i class="fas fa-calendar mr-1"></i>Due in 12 days</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 mt-2">
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">CS Major</span>
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">3.5+ GPA</span>
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Need-Based</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span class="text-xs text-gray-500">97% match</span>
+                                    <button class="mt-2 px-4 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700">
+                                        Apply Now
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Additional Job Card -->
+                            <div class="flex items-start justify-between p-4 border border-gray-200 rounded-lg hover:border-primary-300 hover:shadow-md transition-all cursor-pointer" data-mock="true">
+                                <div class="flex items-start space-x-4">
+                                    <!-- Modern office space representing a tech company -->
+                                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=64&h=64" 
+                                         alt="Company logo" class="w-12 h-12 rounded-lg object-cover">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">UI/UX Design Intern</h3>
+                                        <p class="text-gray-600 text-sm">DesignFlow Agency</p>
+                                        <div class="flex items-center space-x-4 mt-2 text-sm text-gray-500">
+                                            <span><i class="fas fa-map-marker-alt mr-1"></i>Remote</span>
+                                            <span><i class="fas fa-briefcase mr-1"></i>Internship</span>
+                                            <span><i class="fas fa-dollar-sign mr-1"></i>$20/hr</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 mt-2">
+                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Figma</span>
+                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Adobe XD</span>
+                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Part-time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span class="text-xs text-gray-500">Posted 1 week ago</span>
+                                    <button class="mt-2 px-4 py-2 bg-primary-600 text-white text-sm rounded-lg hover:bg-primary-700">
+                                        Apply Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- @END_MAP )) -->
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: RecentOpportunities -->
+
+                <!-- @COMPONENT: ApplicationBoard [kanban-style tracking] -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-xl font-semibold text-gray-900">Application Tracker</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-6 overflow-x-auto pb-4">
+                            <!-- @MAP: applicationStages.map(stage => ( -->
+                            <!-- Saved Column -->
+                            <div class="flex-shrink-0 w-80">
+                                <div class="bg-gray-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="font-medium text-gray-900">Saved</h3>
+                                        <span class="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">3</span>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded-lg border shadow-sm cursor-move hover:shadow-md transition-shadow" data-mock="true">
+                                            <h4 class="font-medium text-sm">Frontend Developer</h4>
+                                            <p class="text-xs text-gray-600">Google Inc.</p>
+                                            <div class="flex items-center justify-between mt-2">
+                                                <span class="text-xs text-gray-500">Deadline: Mar 15</span>
+                                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Job</span>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg border shadow-sm cursor-move hover:shadow-md transition-shadow" data-mock="true">
+                                            <h4 class="font-medium text-sm">PhD Scholarship</h4>
+                                            <p class="text-xs text-gray-600">MIT</p>
+                                            <div class="flex items-center justify-between mt-2">
+                                                <span class="text-xs text-gray-500">Deadline: Apr 1</span>
+                                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Scholarship</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Applying Column -->
+                            <div class="flex-shrink-0 w-80">
+                                <div class="bg-yellow-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="font-medium text-gray-900">Applying</h3>
+                                        <span class="bg-yellow-200 text-yellow-700 text-xs px-2 py-1 rounded-full">2</span>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded-lg border shadow-sm cursor-move hover:shadow-md transition-shadow" data-mock="true">
+                                            <h4 class="font-medium text-sm">Data Scientist</h4>
+                                            <p class="text-xs text-gray-600">Netflix</p>
+                                            <div class="flex items-center justify-between mt-2">
+                                                <span class="text-xs text-gray-500">60% Complete</span>
+                                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Job</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Applied Column -->
+                            <div class="flex-shrink-0 w-80">
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="font-medium text-gray-900">Applied</h3>
+                                        <span class="bg-blue-200 text-blue-700 text-xs px-2 py-1 rounded-full">5</span>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded-lg border shadow-sm cursor-move hover:shadow-md transition-shadow" data-mock="true">
+                                            <h4 class="font-medium text-sm">Software Engineer</h4>
+                                            <p class="text-xs text-gray-600">Apple</p>
+                                            <div class="flex items-center justify-between mt-2">
+                                                <span class="text-xs text-gray-500">Applied 3 days ago</span>
+                                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Job</span>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg border shadow-sm cursor-move hover:shadow-md transition-shadow" data-mock="true">
+                                            <h4 class="font-medium text-sm">Research Grant</h4>
+                                            <p class="text-xs text-gray-600">NSF</p>
+                                            <div class="flex items-center justify-between mt-2">
+                                                <span class="text-xs text-gray-500">Applied 1 week ago</span>
+                                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Grant</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Interview Column -->
+                            <div class="flex-shrink-0 w-80">
+                                <div class="bg-purple-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="font-medium text-gray-900">Interview</h3>
+                                        <span class="bg-purple-200 text-purple-700 text-xs px-2 py-1 rounded-full">2</span>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded-lg border shadow-sm cursor-move hover:shadow-md transition-shadow" data-mock="true">
+                                            <h4 class="font-medium text-sm">Product Manager</h4>
+                                            <p class="text-xs text-gray-600">Spotify</p>
+                                            <div class="flex items-center justify-between mt-2">
+                                                <span class="text-xs text-gray-500">Interview: Mar 20</span>
+                                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Job</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accepted Column -->
+                            <div class="flex-shrink-0 w-80">
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="font-medium text-gray-900">Accepted</h3>
+                                        <span class="bg-green-200 text-green-700 text-xs px-2 py-1 rounded-full">1</span>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded-lg border shadow-sm cursor-move hover:shadow-md transition-shadow" data-mock="true">
+                                            <h4 class="font-medium text-sm">Summer Scholarship</h4>
+                                            <p class="text-xs text-gray-600">Berkeley</p>
+                                            <div class="flex items-center justify-between mt-2">
+                                                <span class="text-xs text-gray-500">$5,000 Award</span>
+                                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Scholarship</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: ApplicationBoard -->
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- @COMPONENT: UpcomingDeadlines [deadline reminders] -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900">Upcoming Deadlines</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3" data-mock="true">
+                                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">PhD Application - MIT</p>
+                                    <p class="text-xs text-gray-500">Due in 2 days</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3" data-mock="true">
+                                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Research Grant</p>
+                                    <p class="text-xs text-gray-500">Due in 1 week</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3" data-mock="true">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Summer Internship</p>
+                                    <p class="text-xs text-gray-500">Due in 2 weeks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: UpcomingDeadlines -->
+
+                <!-- @COMPONENT: QuickActions [profile, documents, settings] -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900">Quick Actions</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-3">
+                            <button class="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg transition-colors">
+                                <i class="fas fa-user text-primary-600"></i>
+                                <span class="text-sm font-medium text-gray-700">Update Profile</span>
+                            </button>
+                            <button class="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg transition-colors">
+                                <i class="fas fa-upload text-primary-600"></i>
+                                <span class="text-sm font-medium text-gray-700">Upload Documents</span>
+                            </button>
+                            <button class="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg transition-colors">
+                                <i class="fas fa-file-alt text-primary-600"></i>
+                                <span class="text-sm font-medium text-gray-700">Generate Resume</span>
+                            </button>
+                            <button class="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg transition-colors">
+                                <i class="fas fa-calculator text-primary-600"></i>
+                                <span class="text-sm font-medium text-gray-700">GPA Calculator</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: QuickActions -->
+
+                <!-- @COMPONENT: ProfileCompletion [progress indicator] -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900">Profile Completion</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700">Progress</span>
+                                <span class="text-sm text-gray-500" data-bind="profile.completion">78%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary-600 h-2 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-500 text-xs"></i>
+                                <span class="text-gray-600">Basic Information</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-500 text-xs"></i>
+                                <span class="text-gray-600">Education History</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-exclamation text-yellow-500 text-xs"></i>
+                                <span class="text-gray-600">Work Experience</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-times text-red-500 text-xs"></i>
+                                <span class="text-gray-600">Skills & Certifications</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: ProfileCompletion -->
+            </div>
+        </div>
+    </div>
+
+    <!-- @COMPONENT: MobileNavigation [bottom navigation for mobile] -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <div class="flex justify-around py-2">
+            <button class="flex flex-col items-center p-2 text-primary-600">
+                <i class="fas fa-home text-lg"></i>
+                <span class="text-xs mt-1">Dashboard</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400">
+                <i class="fas fa-search text-lg"></i>
+                <span class="text-xs mt-1">Search</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400">
+                <i class="fas fa-list text-lg"></i>
+                <span class="text-xs mt-1">Applications</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400">
+                <i class="fas fa-user text-lg"></i>
+                <span class="text-xs mt-1">Profile</span>
+            </button>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: MobileNavigation -->
+
+    <script>
+        // TODO: Implement drag-and-drop functionality for Kanban board
+        // TODO: Implement real-time notifications
+        // TODO: Implement search filtering and sorting
+        // TODO: Implement file upload functionality
+        // TODO: Implement calendar integration
+        
+        (function() {
+            // Basic interactivity for demo purposes
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add hover effects to opportunity cards
+                const opportunityCards = document.querySelectorAll('[data-mock="true"]');
+                opportunityCards.forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-2px)';
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0)';
+                    });
+                });
+
+                // Simulate live updates for stats
+                const updateStats = () => {
+                    const applicationsStat = document.querySelector('[data-bind="stats.applications"]');
+                    const interviewsStat = document.querySelector('[data-bind="stats.interviews"]');
+                    const deadlinesStat = document.querySelector('[data-bind="stats.deadlines"]');
+                    
+                    if (applicationsStat) {
+                        // Simulate minor stat changes
+                        const currentVal = parseInt(applicationsStat.textContent);
+                        if (Math.random() > 0.95) { // 5% chance of update
+                            applicationsStat.textContent = currentVal + 1;
+                        }
+                    }
+                };
+
+                // Update stats every 30 seconds (simulated)
+                setInterval(updateStats, 30000);
+            });
+        })();
+    </script>
+</body>
+</html>

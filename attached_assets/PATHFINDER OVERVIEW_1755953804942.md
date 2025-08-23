@@ -1,6 +1,4 @@
-# Pathfinder App - Complete Feature List & Development Guide
-
-# Pathfinder App - Complete Feature List
+CareerSync - Complete Feature List
 
 *A unified platform for scholarship and job discovery, application tracking, and career development*
 
