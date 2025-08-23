@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Users, Target, TrendingUp, Compass } from "lucide-react";
+import { CheckCircle, Users, Target, TrendingUp, Compass, Sparkles } from "lucide-react";
+import { PageTransition, StaggeredContainer, StaggeredItem } from "@/components/shared/PageTransition";
+import { motion } from "framer-motion";
 
 export default function Landing() {
   const features = [
@@ -27,48 +29,108 @@ export default function Landing() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
-      <div className="container mx-auto px-4 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-6">
-            <Compass className="h-12 w-12 text-primary mr-3" />
-            <h1 className="text-4xl font-bold text-gray-900">CareerSync</h1>
-          </div>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Your comprehensive platform for career and education opportunities. 
-            Discover, track, and succeed in your professional journey.
-          </p>
-          <Button 
-            size="lg" 
-            className="px-8 py-6 text-lg"
-            onClick={() => window.location.href = '/api/login'}
-            data-testid="button-login"
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-background dark:from-primary-950/50 dark:to-background transition-colors duration-500">
+        <div className="container mx-auto px-4 py-16">
+          {/* Header */}
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           >
-            Get Started - Sign In
-          </Button>
-        </div>
+            <motion.div 
+              className="flex items-center justify-center mb-6"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5, type: "spring", stiffness: 200 }}
+            >
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              >
+                <Compass className="h-12 w-12 text-primary mr-3" />
+              </motion.div>
+              <h1 className="text-4xl font-bold text-foreground">CareerSync</h1>
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity, delay: 1 }}
+              >
+                <Sparkles className="h-6 w-6 text-primary ml-2" />
+              </motion.div>
+            </motion.div>
+            <motion.p 
+              className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              Your comprehensive platform for career and education opportunities. 
+              Discover, track, and succeed in your professional journey.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button 
+                size="lg" 
+                className="px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => window.location.href = '/api/login'}
+                data-testid="button-login"
+              >
+                Get Started - Sign In
+              </Button>
+            </motion.div>
+          </motion.div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <StaggeredContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16" delay={0.1}>
           {features.map((feature, index) => (
-            <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex justify-center mb-4">
-                  {feature.icon}
-                </div>
-                <CardTitle className="text-lg">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>{feature.description}</CardDescription>
-              </CardContent>
-            </Card>
+            <StaggeredItem key={index}>
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <Card className="text-center hover:shadow-xl transition-all duration-300 bg-card/80 backdrop-blur-sm border-border hover:border-primary/50">
+                  <CardHeader>
+                    <motion.div 
+                      className="flex justify-center mb-4"
+                      whileHover={{ rotate: 10, scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      {feature.icon}
+                    </motion.div>
+                    <CardTitle className="text-lg text-foreground">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-muted-foreground">{feature.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </StaggeredItem>
           ))}
-        </div>
+        </StaggeredContainer>
 
         {/* Benefits Section */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8">Why Choose CareerSync?</h2>
+        <motion.div 
+          className="bg-card/80 backdrop-blur-sm border border-border rounded-xl shadow-lg p-8 mb-16 transition-colors duration-300"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+        >
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-8 text-foreground"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Why Choose CareerSync?
+          </motion.h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-xl font-semibold mb-4">For Students & Job Seekers</h3>
@@ -113,24 +175,54 @@ export default function Landing() {
               </ul>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* CTA Section */}
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to Sync Your Career?</h2>
-          <p className="text-gray-600 mb-6">
-            Join thousands of students and professionals who are advancing their careers with CareerSync.
-          </p>
-          <Button 
-            size="lg" 
-            className="px-8 py-4"
-            onClick={() => window.location.href = '/api/login'}
-            data-testid="button-cta-login"
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2 
+            className="text-2xl font-bold mb-4 text-foreground"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            viewport={{ once: true }}
           >
-            Start Your Journey Today
-          </Button>
+            Ready to Sync Your Career?
+          </motion.h2>
+          <motion.p 
+            className="text-muted-foreground mb-6"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Join thousands of students and professionals who are advancing their careers with CareerSync.
+          </motion.p>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button 
+              size="lg" 
+              className="px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={() => window.location.href = '/api/login'}
+              data-testid="button-cta-login"
+            >
+              Start Your Journey Today
+            </Button>
+          </motion.div>
+        </motion.div>
         </div>
       </div>
-    </div>
+    </PageTransition>
   );
 }

@@ -96,16 +96,17 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(210 40% 96%);
+  background: var(--muted);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(215.4 16.3% 46.9%);
+  background: var(--muted-foreground);
   border-radius: 3px;
+  transition: background-color 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(221.2 83.2% 53.3%);
+  background: var(--primary);
 }
 
 /* Focus states */
