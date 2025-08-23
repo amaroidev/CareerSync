@@ -21,19 +21,19 @@ export default function QuickStats() {
   const statItems = [
     {
       title: "Applications",
-      value: stats?.totalApplications || 0,
+      value: (stats as any)?.totalApplications || 0,
       icon: <Send className="text-primary" />,
       bgColor: "bg-primary-50",
     },
     {
       title: "Interviews",
-      value: stats?.interviews || 0,
+      value: (stats as any)?.interviews || 0,
       icon: <Calendar className="text-green-600" />,
       bgColor: "bg-green-50",
     },
     {
       title: "Deadlines",
-      value: stats?.upcomingDeadlines || 0,
+      value: (stats as any)?.upcomingDeadlines || 0,
       icon: <Clock className="text-amber-600" />,
       bgColor: "bg-amber-50",
     },

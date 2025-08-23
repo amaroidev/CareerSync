@@ -77,19 +77,20 @@ export default function Profile() {
   // Update form when profile data loads
   useEffect(() => {
     if (profile) {
+      const profileData = profile as any;
       form.reset({
-        gpa: profile.gpa || "",
-        major: profile.major || "",
-        university: profile.university || "",
-        graduationYear: profile.graduationYear || undefined,
-        skills: profile.skills || [],
-        experience: profile.experience || "",
-        bio: profile.bio || "",
-        portfolioUrl: profile.portfolioUrl || "",
-        linkedinUrl: profile.linkedinUrl || "",
-        githubUrl: profile.githubUrl || "",
+        gpa: profileData?.gpa || "",
+        major: profileData?.major || "",
+        university: profileData?.university || "",
+        graduationYear: profileData?.graduationYear || undefined,
+        skills: profileData?.skills || [],
+        experience: profileData?.experience || "",
+        bio: profileData?.bio || "",
+        portfolioUrl: profileData?.portfolioUrl || "",
+        linkedinUrl: profileData?.linkedinUrl || "",
+        githubUrl: profileData?.githubUrl || "",
       });
-      setSkillsInput(profile.skills?.join(", ") || "");
+      setSkillsInput(profileData?.skills?.join(", ") || "");
     }
   }, [profile, form]);
 
@@ -187,7 +188,7 @@ export default function Profile() {
                       First Name
                     </label>
                     <Input 
-                      value={user?.firstName || ""} 
+                      value={(user as any)?.firstName || ""} 
                       disabled 
                       className="bg-gray-50"
                       data-testid="input-first-name"
@@ -201,7 +202,7 @@ export default function Profile() {
                       Last Name
                     </label>
                     <Input 
-                      value={user?.lastName || ""} 
+                      value={(user as any)?.lastName || ""} 
                       disabled 
                       className="bg-gray-50"
                       data-testid="input-last-name"

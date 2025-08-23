@@ -65,7 +65,7 @@ export default function Dashboard() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2" data-testid="text-welcome">
-            Welcome back, {user?.firstName || 'there'}!
+            Welcome back, {(user as any)?.firstName || 'there'}!
           </h1>
           <p className="text-gray-600">Track your applications and discover new opportunities</p>
         </div>
@@ -102,8 +102,8 @@ export default function Dashboard() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {recommendedOpportunities?.length > 0 ? (
-                      recommendedOpportunities.map((opportunity: any) => (
+                    {(recommendedOpportunities as any)?.length > 0 ? (
+                      (recommendedOpportunities as any).map((opportunity: any) => (
                         <OpportunityCard key={opportunity.id} opportunity={opportunity} />
                       ))
                     ) : (

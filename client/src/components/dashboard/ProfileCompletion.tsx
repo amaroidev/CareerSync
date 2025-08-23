@@ -33,27 +33,27 @@ export default function ProfileCompletion() {
   const completionItems = [
     {
       label: "Basic Information",
-      completed: !!(user?.firstName && user?.email),
+      completed: !!((user as any)?.firstName && (user as any)?.email),
       icon: <CheckCircle className="text-green-500 text-xs" />,
     },
     {
       label: "Education History",
-      completed: !!(profile?.university && profile?.major),
-      icon: profile?.university && profile?.major 
+      completed: !!((profile as any)?.university && (profile as any)?.major),
+      icon: (profile as any)?.university && (profile as any)?.major 
         ? <CheckCircle className="text-green-500 text-xs" />
         : <XCircle className="text-red-500 text-xs" />,
     },
     {
       label: "Work Experience",
-      completed: !!profile?.experience,
-      icon: profile?.experience 
+      completed: !!(profile as any)?.experience,
+      icon: (profile as any)?.experience 
         ? <CheckCircle className="text-green-500 text-xs" />
         : <AlertCircle className="text-yellow-500 text-xs" />,
     },
     {
       label: "Skills & Bio",
-      completed: !!(profile?.skills?.length > 0 && profile?.bio),
-      icon: (profile?.skills?.length > 0 && profile?.bio)
+      completed: !!((profile as any)?.skills?.length > 0 && (profile as any)?.bio),
+      icon: ((profile as any)?.skills?.length > 0 && (profile as any)?.bio)
         ? <CheckCircle className="text-green-500 text-xs" />
         : <XCircle className="text-red-500 text-xs" />,
     },

@@ -112,9 +112,7 @@ export class DatabaseStorage implements IStorage {
     limit?: number;
     offset?: number;
   }): Promise<Opportunity[]> {
-    let query = db.select().from(opportunities).where(eq(opportunities.isActive, true));
-    
-    const conditions = [];
+    const conditions = [eq(opportunities.isActive, true)];
     
     if (filters?.type && filters.type !== 'All Types') {
       conditions.push(eq(opportunities.type, filters.type as any));
@@ -125,30 +123,31 @@ export class DatabaseStorage implements IStorage {
     }
     
     if (filters?.search) {
-      conditions.push(
-        or(
-          ilike(opportunities.title, `%${filters.search}%`),
-          ilike(opportunities.company, `%${filters.search}%`),
-          ilike(opportunities.description, `%${filters.search}%`)
-        )
+      const searchCondition = or(
+        ilike(opportunities.title, `%${filters.search}%`),
+        ilike(opportunities.company, `%${filters.search}%`),
+        ilike(opportunities.description, `%${filters.search}%`)
       );
+      if (searchCondition) {
+        conditions.push(searchCondition);
+      }
     }
     
-    if (conditions.length > 0) {
-      query = query.where(and(...conditions));
-    }
-    
-    query = query.orderBy(desc(opportunities.createdAt));
+    let queryBuilder = db
+      .select()
+      .from(opportunities)
+      .where(and(...conditions))
+      .orderBy(desc(opportunities.createdAt));
     
     if (filters?.limit) {
-      query = query.limit(filters.limit);
+      queryBuilder = queryBuilder.limit(filters.limit);
     }
     
     if (filters?.offset) {
-      query = query.offset(filters.offset);
+      queryBuilder = queryBuilder.offset(filters.offset);
     }
     
-    return await query;
+    return await queryBuilder;
   }
 
   async getOpportunityById(id: string): Promise<Opportunity | undefined> {

@@ -62,13 +62,13 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="flex items-center space-x-3" data-testid="button-user-menu">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={user?.profileImageUrl} alt="User avatar" />
+                    <AvatarImage src={(user as any)?.profileImageUrl} alt="User avatar" />
                     <AvatarFallback>
-                      {user?.firstName?.[0]}{user?.lastName?.[0]}
+                      {(user as any)?.firstName?.[0]}{(user as any)?.lastName?.[0]}
                     </AvatarFallback>
                   </Avatar>
                   <span className="hidden sm:block text-sm font-medium text-gray-700">
-                    {user?.firstName} {user?.lastName}
+                    {(user as any)?.firstName} {(user as any)?.lastName}
                   </span>
                 </Button>
               </DropdownMenuTrigger>

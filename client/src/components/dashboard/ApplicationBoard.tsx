@@ -193,7 +193,7 @@ export default function ApplicationBoard() {
   }
 
   // Group applications by status
-  const applicationsByStatus = applications?.reduce((acc: any, app: ApplicationWithOpportunity) => {
+  const applicationsByStatus = (applications as any)?.reduce((acc: any, app: ApplicationWithOpportunity) => {
     if (!acc[app.status]) {
       acc[app.status] = [];
     }

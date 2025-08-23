@@ -42,8 +42,8 @@ export default function UpcomingDeadlines() {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {deadlines?.length > 0 ? (
-            deadlines.map((item: any) => (
+          {(deadlines as any)?.length > 0 ? (
+            (deadlines as any).map((item: any) => (
               <div key={item.id} className="flex items-center space-x-3" data-testid={`deadline-${item.id}`}>
                 <div className={`w-2 h-2 ${getUrgencyColor(item.opportunity.deadline)} rounded-full`}></div>
                 <div className="flex-1">

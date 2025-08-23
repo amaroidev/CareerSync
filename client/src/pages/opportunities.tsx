@@ -130,9 +130,9 @@ export default function Opportunities() {
                 <Skeleton key={i} className="h-48" />
               ))}
             </div>
-          ) : opportunities?.length > 0 ? (
+          ) : (opportunities as any)?.length > 0 ? (
             <div className="grid gap-6">
-              {opportunities.map((opportunity: any) => (
+              {(opportunities as any).map((opportunity: any) => (
                 <OpportunityCard key={opportunity.id} opportunity={opportunity} showActions />
               ))}
             </div>
