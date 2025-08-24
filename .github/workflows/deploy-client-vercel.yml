@@ -16,23 +16,22 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies (client)
-        working-directory: ./client
+      - name: Install dependencies (repo root)
         run: |
           npm ci
 
-      - name: Build (client)
-        working-directory: ./client
+      - name: Build (root) -> produces dist/public
         run: |
-          npm run build --if-present
+          npm run build
 
       - name: Install Vercel CLI
         run: npm i -g vercel@28
 
-      - name: Deploy to Vercel
+      - name: Deploy built static folder to Vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          vercel --token "$VERCEL_TOKEN" --prod --confirm --cwd ./client --org=$VERCEL_ORG_ID --project=$VERCEL_PROJECT_ID
+          # Deploy the generated static output (dist/public) so the built JS/CSS are served correctly
+          vercel --token "$VERCEL_TOKEN" --prod --confirm ./dist/public --org=$VERCEL_ORG_ID --project=$VERCEL_PROJECT_ID
